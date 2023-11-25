@@ -6,7 +6,7 @@ module.exports = {
     .setDescription('test command')
     .setDMPermission(false),
   async execute(interaction) {
-    await interaction.deferReply();
-    await interaction.reply({ ephemeral: true, content: 'test' });
+    await interaction.deferReply({ ephemeral: true });
+    await interaction.followUp({ content: 'test' });
   },
 };
