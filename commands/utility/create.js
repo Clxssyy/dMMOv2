@@ -97,6 +97,13 @@ module.exports = {
 
     if (interaction.options.getSubcommand() === 'region') {
       const name = interaction.options.getString('name');
+      const playerCategory = interaction.guild.channels.cache.find(
+        (channel) => channel.id === '1178211185640869968'
+      );
+
+      console.log('playerCategory', playerCategory.position);
+      const position = playerCategory.position;
+      console.log(position);
 
       await interaction.followUp({
         content: `Creating region ${name}.`,
@@ -110,6 +117,7 @@ module.exports = {
       await interaction.guild.channels.create({
         name: name,
         type: ChannelType.GuildCategory,
+        position: position,
         permissionOverwrites: [
           {
             id: interaction.guild.id,
