@@ -35,7 +35,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName('region')
-        .setDescription('Register a region.')
+        .setDescription('Create a region.')
         .addStringOption((option) =>
           option
             .setName('name')
