@@ -52,7 +52,9 @@ module.exports = {
       const description = interaction.options.getString('description');
 
       await interaction.followUp({
-        content: `Creating zone ${name} in ${region} with description ${description}`,
+        content: `Creating zone ${name} in ${region.name}${
+          description ? ' with description ' + description : ''
+        }`,
       });
 
       await interaction.guild.roles.create({
@@ -87,7 +89,9 @@ module.exports = {
         });
 
       await interaction.editReply({
-        content: `Created zone ${name} in ${region} with description ${description}`,
+        content: `Created zone ${name} in ${region.name}${
+          description ? ' with description ' + description : ''
+        }`,
       });
     }
 
