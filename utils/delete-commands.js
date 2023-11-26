@@ -2,7 +2,7 @@ const { REST, Routes } = require('discord.js');
 
 require('dotenv').config();
 
-const rest = new REST().setToken(process.env.DISCORD_TOKEN);
+const rest = new REST().setToken(process.env.BOT_TOKEN);
 
 rest
   .put(Routes.applicationCommands(process.env.CLIENT_ID), { body: [] })
