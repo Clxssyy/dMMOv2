@@ -103,6 +103,52 @@ module.exports = {
     if (interaction.options.getSubcommand() === 'region') {
       const region = interaction.options.getChannel('name');
 
+      if (region.children.cache.size > 0) {
+        await interaction.followUp('Region has zones. Delete zones first.');
+
+        const file = await new AttachmentBuilder(
+          './public/warning-message-concept-represented-by-exclamation-mark-icon-exclamation-symbol-in-circle-png.png'
+        );
+
+        const regionEmbed = await new EmbedBuilder()
+          .setTitle('Region Deletion Attempt')
+          .setThumbnail(
+            'attachment://warning-message-concept-represented-by-exclamation-mark-icon-exclamation-symbol-in-circle-png.png'
+          )
+          .setColor(0xffe500)
+          .addFields([
+            {
+              name: 'Name',
+              value: region.name,
+              inline: false,
+            },
+            {
+              name: 'Zones',
+              value: String(region.children.cache.size),
+            },
+            {
+              name: 'By',
+              value: `<@${interaction.user.id}>`,
+              inline: true,
+            },
+            {
+              name: '\u200b',
+              value: `<t:${Math.floor(Date.now() / 1000)}:R>`,
+              inline: true,
+            },
+          ])
+          .setTimestamp();
+
+        await interaction.guild.channels.cache
+          .find((channel) => channel.id === '1178199804753481789')
+          .send({
+            embeds: [regionEmbed],
+            files: [file],
+          });
+
+        return;
+      }
+
       await interaction.followUp({
         content: `Deleting region ${region.name}.`,
       });
