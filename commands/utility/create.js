@@ -120,7 +120,7 @@ module.exports = {
           },
           {
             name: 'Region',
-            value: region.id,
+            value: region.name,
             inline: true,
           },
           {
